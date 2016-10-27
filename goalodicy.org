@@ -1,0 +1,80 @@
+* Ironic Process Theory
+This is going to be part 1 of what I hope will be a multi-part series. I originally wanted to write one blog post but after spending two weeks working on it, I've realize it's much larger than a single post. To accomplish what I want is going take multiple posts. I'm hoping that each post will build on the previous posts and by the end it will all come together.
+ 
+According to Wikipedia, Ironic Process Theory "refers to the psychological process whereby deliberate attempts to suppress certain thoughts make them more likely to surface". In 1863 Fyodor Dostevsky wrote "Try to pose for yourself this task: not to think of a polar bear, and you will see that the cursed thing will come to mind every minute". Go ahead and try to think of anything else other than a polar bear for 5 minutes. You'll quickly find that it's impossible and a polar bear keeps popping into your head. It's of interest to me because we run into something very similar to it so frequently.
+I recently went through something similar while working on my listening skills.
+ 
+When I'm working on a problem, I will be distracted. Especially while listening to others. Most of the time, the others is my wife. If you've been in any significant relationship, you know this isn't an ideal situation. Significant others will notice when you aren't fully listening. I was trying to actively listen to my wife and avoid interrupting her. While working on this I kept telling myself to listen and to ask leading questions so I could better understand her. It didn't work.
+ 
+We may be trying to make a design more flexible by adding layers of abstractions only to find out later that our abstraction makes it very difficult to solve certain problems. I've seen well meaning engineers trying to make things easier for everyone creating services. They spent about nine months creating a framework that was modular and allowed users to swap out implementations at runtime. It worked great for the engineers that designed it. Anytime they needed to create a new service, it took them a few minutes to have it up and running and they spent the rest of the time focused on writing the business logic. When other engineers attempted to implement a new service with the framework, it slowed things down. They would run into bugs, sometimes difficult to troubleshoot bugs that the authors avoided because they knew better. The authors felt that the framework was intuitive so they avoided writing documentation for it. The company scrapped the framework after a couple of years because the cost in complexity offset any savings they were trying to achieve.
+ 
+One case from my the early days of my career, I spent several days refactoring code that was used in a reporting layer to make it much faster. In engineering speak, I changed our data structures from using hashmaps to sets. The improvement in speed was significant for reporting, but near the end of the work I found that I had made some key use cases so bad that I had to scrap all my work and start over.
+ 
+I even had a friend that tried to save money by not getting maintenance performed on his car. He thought the cost of oil changes and belt changes would make it worthwhile in the long run. His engine froze up on him a couple of years after purchasing a new car and he ended up having to buy a new one while still paying off his loan on the old one.
+ 
+So what happened with my listening skills? I listened less. I spent so much time telling myself to focus and ask questions that I caught less of my wife's meaning and ended up drawing the wrong conclusions. She ended up telling me that she felt like I wasn't listening to her and I had to take corrective action.
+ 
+Anytime we try to change something, we may bring about the opposite effect.
+* Law of Unintended Consequences
+** I hung my head
+My brother's rifle
+Went off in my hand
+A shot rang out
+Across the land
+
+In Johnny Cash's cover of "I hung my head" a young man is practicing his aim with his brothers rifle by pointing it at a man riding across the plain. We can all look at the example and intuitively say he shouldn't have done it because accidents happen. Accidents happen all the time. Another way to look at this is that shooting the man was an unintended consequence. 
+
+Sociologist Robert K Merton popularized the term unintended consequence. An unintended consequences is any result that wasn't originally forecasted for an action. In the case above the young man just wanted to practice his aim and the unintended consequence would be the mans life being taken. Unintended consequence can take a few different forms:
+
+Unintended benefit
+Unintended drawback
+Ironic results
+
+Unintended benefits are very interesting. How often do we make a change for the better only to find out that something even more amazing came to be because of it. Aspirin was intended as a pain reliever and it was later found to help lower the risk of heart attacks. Viagra was originally intended to help lower blood pressure and we know how that little blue pill is being used. One of my favorite examples is what happened in Yellowstone when they re-introduced wolves.
+
+https://www.youtube.com/watch?v=ysa5OBhXz-Q
+
+Unintended drawbacks happen when we realize the benefit, but there's also negative side effects that we didn't anticipate. When Henry Molaison was seven years old he had a bicycle accident that caused him to start having mild seizures. Around his 16th birthday he started having grand mal seizures and would black out several times a day. This affected his ability to keep a job and at the age of 27 he agreed to an experimental procedure to cure him of his seizures. A doctor removed a small portion of his brain that was thought to be contributing to his epilepsy. The surgery helped to eliminate his seizures, but it caused other problems. He couldn't remember most of the last 2 years and lost memories up to 11 years prior to the surgery. The biggest change was his inability to remember anything long term.  
+
+Ironic results are the most interesting to me. An entire blog post can be written on them, which is why I wrote Oh the Irony. 
+
+What contributes to unintended consequences? Robert Merton suggests five factors. 
+** Ignorance
+We don't know what we don't know, often labeled unknown unknowns. Since we don't know what the unknowns are, we can't prevent this. Our only hope is to consider how we might mitigate negative consequences.
+** Analysis Errors
+Sometimes we use techniques that worked for before, but are inadequate to solve the existing problem. In buzzword bingo we call this a paradigm shift. Paradigm shifts may prevent the negative consequences, but it may also result in an unintended benefit. We may have solved a new problem in a novel way that changes how the problem is looked at.
+** Immediate interests overriding long-term interests
+Focus on short term results over long term results can cause some drastic negative unintended consequences. Mylan is currently dealing with unintended consequences of raising the price of epipens so they could increase short term profitability of the company.
+** Basic values not in alignment with long term results
+I feel like this really falls into short term interests over riding long term results. Another great example of this is in the "The Wolf of Wall-street" when Leonardo DiCaprio's character would avoid jail time if he would step down. 
+** Self defeating prophecy
+I will call on YAGNI, You ain't gonna need it. This happens when a solution is implemented to a problem that never manifests itself. Sometimes it's OK to implement a solution that you never need, like in the case of having of having an emergency fund. Other times it may not make sense. Building a fall out shelter in your back yard is probably a waste if we never have a nuclear war. It's all about probabilities and how likely a specific event is to happen vs the cost of not being prepared. Sometimes you can mitigate the problem. For instance, one way to mitigate an emergency without having an emergency fund would be to have a credit card with a 0 balance or a line of credit that can be called on if it's needed. 
+
+Sometimes unintended consequences can be a good thing and at other times it can be bad. The point I want to make with this post is that no matter what you do, there will likely be a side effect you didn't anticipate. 
+* Loss Aversion
+https://en.wikipedia.org/wiki/Loss_aversion
+* Cognitive Dissonance
+https://en.wikipedia.org/wiki/Cognitive_dissonance
+* Optimism Bias
+* Survivor Bias
+* Goals are Harmful
+* Goalodicy
+"A situation in which the normally helpful process of goal setting becomes dysfunctional, and the effort put toward achieving a goal results in unintended consequences."
+
+Goalodicy was coined by Dr Chris Kayes in "Destructive Goal Pursuit: The Mt. Everest Disaster", a book about how goals can be destructive. If the previous sentences didn't make you quit reading, then here are some reasons you should care.
+
+| Wells Fargo |
+| GM          |
+| Enron       |
+|             |
+
+
+Goals Gone Wild
+http://www.hbs.edu/faculty/Publication%20Files/09-083.pdf
+
+
+* What you did more/less of if you died
+* Dopamine
+* Employees aren't Assets
+http://www.clomedia.com/2016/04/27/employees-are-investors-not-assets/
+* Guerilla Development

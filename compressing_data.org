@@ -1,0 +1,11 @@
+{"cookie_set": true, "country": "UK", "cost": 840}
+
+* Drop Keys
+
+* Encode values as Integers when possible
+Turns it into matrixes
+Sparse Matrix
+Typed Columns = Smaller Byte Representation
+Sort Dimensions
+Merge Duplicate Rows
+Dense Encoding

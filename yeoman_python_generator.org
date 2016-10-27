@@ -1,0 +1,6 @@
+* Create DoIt file
+** Tangle files
+** Generate Documentation
+** Run Tests
+* Create Dockerfile
+* 

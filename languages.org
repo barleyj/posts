@@ -1,0 +1,12 @@
+| Criteria          | Rank | Python | Erlang | Idris | C |
+|-------------------+------+--------+--------+-------+---|
+| Interesting       |    7 |      3 |        |       |   |
+| Rapid Development |    6 |      2 |        |       |   |
+| Testability       |    5 |        |        |       |   |
+| Average Salary    |    4 |        |        |       |   |
+| Life Cycle        |    3 |        |        |       |   |
+| Performance       |    2 |        |        |       |   |
+|-------------------+------+--------+--------+-------+---|
+| Rank              |      |        |        |       |   |
+#+TBLFM: $2='(- (length org-table-dlines) @#)::@8$3=(@I$2..@II$2)*(@I$3..@II$3)
+

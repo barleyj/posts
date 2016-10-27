@@ -1,0 +1,30 @@
+
+* No vaccine is 100% effective. 
+
+
+
+* Articles
+http://vaccine-injury.info/articles.cfm
+** Study suggests: Whooping cough resurgence due to vaccinated people not knowing they are infectious
+*** Article
+http://www.sciencedaily.com/releases/2015/06/150624071018.htm
+*** Research Paper
+http://dx.doi.org/10.1186/s12916-015-0382-8
+*** Response
+The research paper in question has been misinterpreted. As we know, a 100% effective vaccine does not exist. What the research paper indicates is that, in cases where the vaccine was ineffective for that person, they can contract whooping cough and not show symptoms. This means they can inadvertantly spread it to individuals that are not vaccinated or to individuals where the vaccine was ineffective. 
+
+In the 1934's whooping cough infected 260,000 people per year in the US. Estimates indicate that 1 out of every 200 children in the US died from whooping cough each year. Due to complaints about redness, swelling, pain where the injections were given along with mild reactions like fever and drowsiness, the National Institute of Health performed a study on the vaccine. What they found was that 96% of the subjects that received the vaccine and 36% that recieved the placebo had similar reactions. Only 3% of the children developed symptoms that would suggest they shouldn't receive the vaccine. With 4 million babies being born each year, 20,000 children could have died each year. We chose to vaccinate and 120,000 developed symptoms that indicated they should not received the vaccine. This caused us to make a change to the whooping cough vaccine. The new vaccine reduces these severe cases from 120,000 per 4 million to 4. "From 2000 through 2014, there were 277 deaths from whooping cough reported in the United States. Almost all of the deaths (241 of the 277) were babies younger than 3 months of age, who are too young to be protected against whooping cough by getting the shots."
+
+We had to reduce the effectiveness of the vaccine to offset the symptoms that 3% of all children were developing that indicated they shouldn't receive the vaccine.  
+
+http://www.cdc.gov/mmwr/preview/mmwrhtml/00048610.htm
+http://immunizationinfo.com/diseases-prevented-by-vaccines/pertussis-whooping-cough/
+http://www.ncbi.nlm.nih.gov/pubmed/2304782
+http://www.cdc.gov/vaccines/vpd-vac/pertussis/fs-parents.html
+** CDC admits 98 million Americans were given cancer virus via the polio shot
+*** Article
+http://vaccines.news/2015-09-23-cdc-admits-98-million-americans-were-given-cancer-virus-via-the-polio-shot.html
+*** Response
+This article misinterpreted the CDC page. About 60 years ago 98 million Americans were given a vaccine that was contaminated with SV40. 
+
+http://www.ncbi.nlm.nih.gov/pubmed/10472327

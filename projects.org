@@ -1,0 +1,32 @@
+* Personal
+** TODO Code analysis
+ Create a script that analyzes code, git commits and jira's
+** TODO New MongoDB analysis layer
+ We are using Cython and pulling data from MongoDB and analyzing all
+ the data. I feel that we could gain effeciencies if we pushed as much
+ of the analysis as possible into MongoDB.
+*** Disco
+*** Dask+Distributed
+ http://matthewrocklin.com/blog/work/2016/02/17/dask-distributed-part1
+** TODO Unit test snippets
+** TODO Unit test template
+** TODO Sentiment Training
+*** Each streamer get's their own data dir
+*** Train system
+*** Periodically look for mismatches in Sentiment
+*** Retrain with added mismatches
+*** Save retraining to new directory
+*** Analyze all docs with newly trained system
+*** Mark changes
+*** Offer to promote new training based on changes to based on customer feedback
+** TODO Yeoman project generator
+*** Erlang
+*** Python
+** TODO Distributed Task Runner
+** TODO Streaming analysis framework that uses "generators"
+Think of python generators. next() function from a process
+** TODO Erlang Behavior to Python Behavior
+** TODO Recurrent Neural Network
+** TODO Gossip Protocols
+** TODO Monte Carlo algorithms
+** TODO CRDT's

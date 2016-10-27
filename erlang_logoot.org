@@ -1,0 +1,21 @@
+* Component
+* Document
+** Depends on:
+*** Operation
+* Factory
+* Identifier
+* Strategy
+** Depeneds on:
+*** Identifier
+*** Merge
+* Merge
+** Depends on:
+*** Strategy
+*** Document
+*** Trace Operation
+*** Operation
+* Operation
+** Depends on:
+*** Trace Operation
+*** Operation Type
+

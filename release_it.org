@@ -1,0 +1,11 @@
+* Release It!
+* Case Study: Trampled by Your Own Customers
+When you can push code in minutes, what's the difference between code and configuration.
+** etcd
+** console
+* Introducing Capacity
+
+* Books
+The Goal - Eliyahu M. Goldratt
+The Phoenix Project
+Fifth Discipline

@@ -1,0 +1,621 @@
+ErlangFactory
+SFskyline
+* Keynote: Phoenix and Elm – Making the Web Functional
+** Speakers
+*** Chris McCord
+**** Twitter: @chris_mccord
+*** Evan Czaplicki
+**** Twitter: @czaplic
+** Link
+http://www.erlang-factory.com/sfbay2016/chris-mccord
+** Notes
+*** The dysfunctional web
+**** There is no more free lunch
+**** The world is moving from mostly stateless connections to increasingly stateful ones
+**** At odds with languages concurrency models
+**** OO Solutions are becoming increasingly more complex to handle the demands of modern web
+**** Fragile tooling
+**** Competing async models
+**** Framework churn and framework fatigue as the community seeks ideal architectures
+**** 2 million users per server for $1300 a month
+**** Optimizations
+***** 30k -> 60k subscribers
+****** 14 additions and 69 deletions
+***** 60k -> 330k subscribers
+****** 5 additions and 38 deletions
+***** 330k -> 450k subscribers (+10x arrival rate)
+****** 1 addition and 1 deletion
+***** Used observers to help with profiling.
+****** How do we automate observer for profiling?
+**** Sharding subscriptions
+***** Sharding by PID
+**** Phoenix.Presence
+***** Implement Service Discover on top of Presence
+***** See users online
+****** Problem
+******* Just broadcast as usres join and leave
+******* If user opens 2 browser tabs, duplicate users
+******* 3 tabs - 1 tab closes shows user offline even though they are still on 2 tabs
+******* Presence backed by shared database! Problem solved
+******** Write precense to Redis
+********* If node catches fire, it can't clean up.
+******** Ideal architecture
+******** No single source of truth
+******** Replicate presence join and leave events across the cluster without merge conflicts
+******** CRDT
+********* Strong eventually consistent
+********* Replicate presence across cluster without merge conflicts
+********* Conflicts mathmatecally impossible
+*** Elm and Phoenix channels
+**** Will be amazing in a month!!!
+**** Treat HTML as values
+***** Reusable components
+****** MODEL program
+****** UPDATE model
+****** VIEW Model
+***** Follow Elm architecture!
+***** Extremely useful error messages
+** Misc
+ http://www.dockyard.com
+ Swim Algorithm - Heatbeat protocol
+ Vector Clocks
+* News from the OTP Team - Roadmap
+** Speakers
+*** Kenneth Lundin
+** Link
+http://www.erlang-factory.com/sfbay2016/kenneth-lundin
+** Notes
+*** Rebar3 moving to Erlang on GitHub
+*** 
+* Build a P2P Document Oriented Database
+** Speakers
+*** Benoit Chesneau 
+**** Twitter: @benoitc
+** Link
+http://www.erlang-factory.com/sfbay2016/benoit-chesneau
+https://barrel-db.org
+** Notes
+*** Using Raspberry PI 3 for testing. 
+*** Small data replicated over the whole world.
+*** Data is mobile
+**** Data should be local first, especially for querying
+**** Discovering new data can be done P2P.
+*** What is barrel
+**** A document database
+**** Documents are JSON with attachments and links
+**** Changes feed for document and indexes
+**** Replication between any nodes in both ways
+**** Views act as maps
+*** Replicated apps
+**** Data: not jsut blobs
+**** Replicated apps
+**** Couchapps but extended and revisted
+*** Deconstruct
+**** Append Only and MVCC
+**** The compaction issue
+***** Create a new file to remove the fragmentation
+***** A race betwen copy and the addition of new data
+***** Require at least twice the storage
+**** Document storage
+**** Views
+***** Reverse index (map)
+***** Index using a function
+***** Function in javascript, erlang ...
+***** Incremental index
+***** Retrieves changes (aka view changes)
+***** Views are regrouped by groups (1 db file/group)
+**** Challenges
+***** Writing is slow
+***** Read should not be blocked by writes
+***** No shared memory
+***** No atomic integer tricks
+***** Only actors and message passing
+***** Operations on a doc are atomic
+**** Read/Write Operations
+***** LRU to cache blocks
+****** https://github.com/barrel-db/erlang-lru
+***** 1 file process, operations are limited
+***** DB users are linked to the database process
+***** Optional write buffer to reduce latency
+***** Optional wal
+**** Speedups
+***** Store segments of data for compaction
+***** IO is 'relatively" slow in Erlang
+***** Use a "native KV store" as a NIF
+****** RocksDB
+** Misc
+Refuge in Erlang
+* An Erlang-based Philosophy for Service Reliability
+** Speakers
+*** Jamshid Mahdavi
+**** Twitter: 
+** Link
+http://www.erlang-factory.com/sfbay2016/jamshid-mahdavi
+** Notes
+*** Realiability: Setting Expectations
+**** Rule #1 Never lose a message
+**** Rule #2 Availability trumps everything
+**** Six nines rule: Fail < 1 in a million
+*** 
+*** Development Practices
+**** Minimal footprint
+***** Use only the software you absolutely need
+**** Be careful
+***** Dont make mistakes
+***** These are the things we don't do
+****** Test automation
+****** Code reviews
+**** Investigate every bug
+***** Try for 0 bugs 
+***** No bug tracking system
+***** Find a bug, fix the bug
+***** < 5 open bugs at a time in media server code
+**** Benefits of Erlang
+***** Compact code base - ~20k LOC for media server
+***** Silo architecture
+****** Failures isolate to one feature - minimize user-visible impact
+***** Server migrations
+****** Good opportunities for rewriting/refactoring systems
+*** Deployment Practices
+**** Automation
+***** View as a way to minimize human effort
+***** Not trying to take humans out of the loop (in most cases)
+**** All deployes are manual
+***** Friction by design
+***** Erlang hot laod - zero dropped connections or requests
+**** Lots of small / simple deploys
+***** Change slowly
+***** Value stability
+*** Handling Failures
+**** Failure Modes
+***** Hardware
+****** RAM, discs, NICs
+****** Sometimes more strange issues
+***** Network
+****** Work with our vendor on keeping this perfect
+***** Software
+****** Bugs do happen
+****** Problem scope is usually apparent
+*** Monitoring and Alerting
+**** Monitoring
+***** One monitoring script, mon.sh, runs on all servers
+****** Hardware and certain classes of software issues (e.g. backlog)
+****** 1005 LOC; + an extra 600 LOC for disk systems
+***** Several external health check scripts
+****** mms_mon, www_mon, dns_mon, cdn_mon
+***** Special full mesh monitoring for networking
+****** Used for debugging backend network problems
+***** Trend based alerts
+****** Percent errors, total traffic, etc
+**** Handling Alerts
+***** Alerts are "broadcast" on WhatsApp to whole team
+****** Lucky people also get SMS
+****** Ring every minute until fixed
+***** "Fix Fast" vs "Deep Redundancy"
+****** Expect to fix problems when they happen
+***** Don't try to build most systems to be resilient to double faults
+****** Since 2010, no completely lost partitions
+****** Occaisionally have temporary partition unavailable or inconsistent
+***** Add new alarms whenever we find an issue which doesn't alert us
+*** Summary
+**** Keep it small, keep it simple
+***** Complexity makes systems harder to maintain and debug
+**** #letitcrash
+***** Don't spend time handling things that aren't supposed to happen
+**** Zero bugs / Fix fast
+***** The longer a bug lingres, the more it costs
+** Misc
+Anton from WhatsApp did a talk about Erlang analytics
+* From Rebar2 to Rebar3
+** Speakers
+*** Tristan Sloughter
+**** Twitter: @t_sloughter
+** Link
+http://www.erlang-factory.com/sfbay2016/tristan-sloughter
+** Notes
+*** Why Rebar3
+**** Repeatability
+***** Deterministic dependency resolution
+***** Lock dependencies
+**** Packages
+***** Hex.pm
+****** Central store for BEAM language packages
+**** Dependency Pollution
+***** Test and docs profiles for deps
+****** meck, edown, etc
+**** Broken Features
+***** update-deps
+***** recursive commands
+*** Dialyzer: Now in color!
+*** Eunit too!
+*** Common Test three!
+*** New Plugins
+**** C Compiler
+***** Same configuration as rebar2
+***** Hex.pm package agailable
+***** Hook in to compile provider
+**** Cuttlefish
+***** Auto-schema discovery
+***** Cuttnefish enabled start script
+***** Overrides release and tar
+**** Quickcheck
+**** PropEr
+**** Appup
+**** Protocol Buffers
+**** Relflow
+**** Auto
+**** Autotest
+* Composing Nodes
+** Speakers
+*** Marc Sugiyama 
+**** Twitter: @marcsugiyama
+** Link
+http://www.erlang-factory.com/sfbay2016/marc-sugiyama
+** Notes
+*** OTP Release Management
+**** Bottom -> Up
+***** Code is organized into Modules
+***** Processes use the code in one or more Modules
+***** OTP Application is a collection of Modules and Processes
+**** OTP Application
+***** OTP Application provides a Service through some public API: Erlang Microservice?
+***** Top level Supervisor
+***** Processes
+***** Modules
+***** Dependent OTP Applications
+**** OTP Release
+***** Release is an Erlang Node
+***** Self-contained
+***** List of OTP Applications to run on the NOde
+****** Bundled into the Release
+****** Started in the right order
+**** Repository
+***** Repo of the Service
+***** OTP Application(s) and OTP Release
+*** Distributed Applications
+**** Great, but?
+***** Hard to test/debug during development
+***** Sharing code?
+***** Rebalancing?
+**** What if...
+***** Create an all-in-one node for development/testing
+***** Share Erlang apps among services
+***** Recompose nodes to rebalance workload
+**** Designing for Composition
+***** Make OTP Applicatoins single purpose
+***** Well defined boundaries
+***** Clear API's
+***** Understand dependencies
+**** Repositories
+***** Separate the OTP Applicatoin from the OTP Release needed to use it
+***** Repo for each OTP Application
+***** Repo for each Node Configuration
+**** Application Repo
+***** Application Repo has no Release - rely on the Node Repo for building the Release
+***** List Application dependencies as normal
+**** Compose Node
+***** Empty application for the OTP Release
+***** List OTP Applicatoins to run on Node as dependencies
+***** Any sys.config configuration is for this Node for shared resources
+***** A Master Application
+Could be an empty application that uses private files
+**** But what about mnesia?
+***** Some OTP Applications provide a shared resource
+****** mnesia - database
+Config needs to be in memory or on disk and you need to know it at start up. Multiple nodes must agree to how mnesia will be started and what their schemas are
+****** cowboy - webserver
+**** Thin manager
+***** A Thin Manager initializes the resource
+***** Client OTP Applications use the Thin Manager's API to create/configure the resource
+***** The Thin Manager's config in the OTP Release is the Node-wide configuraiton
+*** Composing a Node
+*** But..
+**** Splitting OTP Release and OTP Application into separate repos complicates workflow
+**** Use symbolic links for deps
+*** Misc
+https://github.com/ivanos/erl_mnesia
+https://github.com/ivanos/erl_cowboy
+https://github.com/ivanos/erl_sshd
+* A CutEr Tool ***MAYBE***
+* Keynote: Why Functional Programming Matters
+** Link
+http://www.erlang-factory.com/sfbay2016/john-hughes
+** Speakers
+*** John Hughes
+**** Twitter: @rjmh
+** Notes
+*** Functional Programmning started in the 40s
+**** Booleans, integers and other data structures can be entirely replaced by functions.
+***** Church Encodings
+*** Factorial in the 60's
+**** McCarthy Lisp
+***** Finally could run Church Encodings
+**** Chris Strachey
+***** Any programming language could be implemente4d with functions
+**** The Next 700 Programming Languages
+***** Landin
+***** 1 language 700 libraries
+**** Can Programming Be Liberated from the von Neumann Style? A Functional Style and It's Algebra of Programs. John Backus Turing Award Paper
+**** Functional Geometry - Peter Henderson
+*** Haskell vs Ada vs C++ vs Awk vs ... An Experiment in Software Prototyping Productivity - Paul Hudak and Mark P Jones
+*** A Lazy Evaluator - Henderson and Morris
+*** CONS should not evaluate its arguments - Friedman and Wise
+*** Why Functional Programming Matters
+*** QuickCheck: A lightweight Tool for Random Testing of Haskell Programs
+*** muFP - Circuits as values
+* What We Talk About When We Talk About Distributed Systems
+** Link
+http://www.erlang-factory.com/sfbay2016/alvaro-videla
+** Speaker
+*** Alvaro Videla 
+**** Twitter: @old_sound
+** Notes
+*** Distributed Systems
+**** Many entities trying to solve a problem
+**** Partial Knowledge
+**** Uncertainty
+*** Deep Rabbit Hole
+**** Impossibility of Distributed Consensus with One Faulty Process
+**** The Part-Time Parliament
+**** Time Clocks and Ordering of Events in a Distributed System
+**** A simple totally ordered broadcast protorocl
+**** In search of an understandable consensus algorithm
+*** Which Books
+**** A lot of books that aren't relevent to day to day operations
+*** Why?
+**** Only 24 hours in a day so it's hard to read all the papers
+**** Only read papers that are relevent
+*** The problem
+**** Different Models
+**** Timing Model
+***** Synchronous Model
+***** Asynchronous Model
+***** Semi-synchronous Model
+**** Interprocess Communication
+***** Message Passing
+***** Shared Memory
+**** Failure Modes
+***** Crash-stop
+***** Crash-recovery
+***** Ommision Faults
+***** Arbitrary Failures Mode (Byzantine)
+**** Liveness and Safety
+***** Safety
+****** Some bad thing doesn't happen during communication
+****** Communication links should not invent messages out of thin air
+***** Liveness
+****** A good thing happens during execution
+****** A destination process eventually delivers the message
+**** Lets take a look at FLP
+***** Impossibility of Distributed Consensus with One Faulty Process
+**** Consensus Problems
+***** There is a growing tendency to replace the concept of truth with that of consensus
+****** Inventing the Enemy
+**** Properties of Consensus
+***** C-Termination
+***** C-Validity
+***** C-Agreement
+***** C-Uniform Agreement
+***** We need consensus
+****** Atomic Broadcast
+***** Misunderstanding and Issues with Concensus Algorithms - Marcos K Aguilera
+**** Failure Detectors
+***** Unreliable Failure Detectors for Reliable Distributed Systems
+****** External Process
+****** Provides information about suspected processes
+****** Completeness property
+****** Accuracy
+***** Introduction Reliable Secure Distributed Programming
+***** Eventually Accurate Failure Detector
+****** Strong Completeness
+****** Eventual Weak Accuracy
+**** Quorums
+***** Intersecting Sets of Processes
+**** Consistency
+***** Linearizability: A Correctness Condition
+****** Concurrent FIFO Queue
+***** Atomic Consistency
+***** Sequential Consistency
+***** Causal Consistency
+*** Books
+**** Distributed Algorithms for Message Passing Systems - Michel Raynal (Not as practical)
+**** Fault tolerant agreement in Synchronous message passing systems - Michel Raynal (Not as practical)
+**** Communication and Agreement Abstractions
+**** Distributed Algorithms - Nancy A. Lynch (The Bible!!)
+**** Reliable and Secure Distributed Programming - Christian Cachin
+**** Guide to Reliable Distributed Systems - Kenneth P. Birman (ISIS Protocol)
+**** Replication Theory and Practice
+*** Finding non-paywalled papers
+** Misc
+*** Call Me Maybe blog!!
+**** 313 Strong Consistency Problems
+* Concurrency + Distribution = Scalability + Availability, a Journey Architecting Erlang Systems
+** Link
+http://www.erlang-factory.com/sfbay2016/francesco-cesarini
+** Speaker
+*** Francesco Cesarini 
+**** Twitter: @FrancescoC
+** Notes
+*** Distributed Architectures
+**** A node is the smallest executable standalone unit consisting of a running instance of the Erlang runtime system
+**** Distributed Erlang Ontology - Paper
+**** Node Types
+***** Front-end Nodes
+****** Web Server
+***** Logic Nodes
+****** Business Logic
+***** Service Node
+****** Database
+***** Define your node types
+**** Node families
+***** Cluster Patterns
+****** Full Messed Principle
+****** Dynamo Principle
+******* Consistent Hash - Basho
+****** Service Bus Principle
+****** Peer to Peer Principle
+**** Network Protocols
+*** Failure Modes
+**** Fault Tolerance
+**** Resilience
+***** Must have consistent state when restarting
+**** Reliability
+***** Retry strategy
+****** At most once
+****** At least once
+****** Exactly once
+***** Share Nothing strategy
+****** Recreate data
+***** Share Something strategy
+***** Share Everything strategy
+****** Network partitions cause issues
+**** Trade offs between Recovery Strategies and Sharing Data Strategies
+*** Scaling Out
+Distribute for scale
+**** Scaling Vertically
+**** Scaling Horizontally
+**** Trade-offs
+*** Capicity Planning
+**** Load Tools
+**** Back Pressure
+**** Load Regulation
+**** Cluster Blue print
+***** If front end handles 500 connections per node and your back end handles 1000 connections per node, you need 1 back end node for each front end node
+*** Monitoring and Preemptive Support
+**** Split up your systems functionality into manageable, stand-alone nodes
+**** Decide what distributed architectural pattern you are going to use
+**** Decide what network protocols your nodes, node families and clusters will use when communicating with each other
+**** Define the node interfaces, state and data models
+**** For every interface function in your nodes, you need to pick a retry strategy
+**** For all your data and state, pick your sharing strategy across node families, clusters and types, taking into consideration the needs of your retry strategy
+**** Reiterate through steps 1-6 until you have trade-offs which suit your specification
+**** Design your cluster bluepring looking at node rations for scaling up and down
+**** Identify where to apply back pressure and load regulation
+**** Define your O&M approach, defining system and business alarms, logs and metrics
+** Misc
+*** Book
+**** Designing for Scalability with Erlang/OTP
+**** Discount Code: authd
+* When ETS Is Too Slow
+** Link
+http://www.erlang-factory.com/sfbay2016/mark-allen
+** Speaker
+*** Mark Allen
+**** Twitter: @bytemeorg
+** Notes
+*** What is Too Slow?
+**** Disabled Riak Capabilities and got a 10% performance boost
+*** Hypothesis
+**** If we speed up cache lookups, big wins
+*** Dirty Hack
+**** Mochiglobal technique
+***** Take Erlang term and build module around it
+*** fling
+**** Generalized dirty hack into fling library
+*** Measuring Erlang performance
+**** eflame
+**** riak_perf_nalaysis
+**** dtrace
+** Misc
+*** 2Q cache eviction paper
+**** http://www.vldb.org/conf/1994/P439.pdf
+*** Eliminationg Single Process Bottlenecks with ETS Concurrencty Pattners - Erlang Factory SF 2014
+* Effective Parallelization of Monte Carlo Calculations for the Solution of Certain Types of Problems on Multi-core Systems
+** Speakers
+*** Brett Cameron
+**** Twitter: @brc859844
+** Link
+http://www.erlang-factory.com/sfbay2016/brett-cameron
+** Notes
+*** Intro to Monte Carlo methods
+**** Branch of experimental mathematics
+***** What is the probability that 10 dice throws add up to exactly 32
+*** Types of Monte Carlo
+**** Probabilistic
+**** Deterministic
+*** Terminology
+*** Simple Experiment
+*** Complicated Problems
+*** Comments on tuning Erlang VM for multi-core
+*** Summary
+** Misc
+https://en.wikipedia.org/wiki/Monte_Carlo_method
+Erlang implementation of estimating PI with monte carlo methods
+"Bayes and Big Data: The COnsensus Monte Carlo Algorithm" - Google paper about applying Monte Carlo methods to big data
+Garrett Smith - Asynchronous Erlang Ports - https://www.youtube.com/watch?v=BG8hjXuV8Os
+* Build big with tiny tools: immutability, checksums, and CRDTs
+** Speakers
+*** Scott Lystig Fritchie
+**** Twitter: @slfritchie
+** Link
+http://www.erlang-factory.com/sfbay2016/scott-lystig-fritchie
+** Notes
+*** Brief into to Machi
+**** Distributed fault tolerant blog store
+**** Strong conistency or eventual consistent
+*** Append only files vs write once files
+**** OS kernel is responsible
+**** Not log structured file systems
+**** Like HDFS, GFS, WAS
+**** File Store/Blob Store hybrid
+***** File store-like API
+****** Files are ordered collection of bytes
+****** Random access to any byte offset
+***** Write once files
+****** A byte/page is writable once
+****** Writes can happen in any time order
+*** Immutability changes everything
+**** Write-Once Register in Erlang
+**** WHy?
+***** Maintaining time oriented ops in a distributed system is hard
+****** Because time is hard
+***** Avoid time, use space instead
+****** Assign once: file name + offeset + byte range size
+****** 
+****** 
+*** Chain replication
+**** Managing chain replication metadata with Humming Consensus
+**** Varaitn of primary/secondary replications: strict chain order
+**** Why
+***** Cheap, Easy, Free
+****** Cheap: f+1 replicas to survive f failures
+****** Easy: Strong constencty is a nice side-effect
+****** Free: Anti entropy is an under-valued side-effect
+**** Why is it a problem
+***** Screw up chain order, screw up consistency
+***** Start of art isn't ideal
+****** Rub some Paxos/Raft/ZooKeeper/etcd on it
+***** The availability of your distributed system is limited by the availability of the systems manager
+****** Don't use SC system to manage and EC system like Riak or EC-mode Machi
+****** RFC 7282
+*** Making Music
+**** Everyone follows strict rules for composition
+***** Voice leading, chord progression, rythm, instrumentation
+***** Need rough consensus on each measure of music
+***** All work in the same room, unless they don't
+**** Composers workflow
+***** 
+*** Machi and CRDTs
+*** Machi and Checksums
+*** Today's development status
+** Misc
+Merkle Tree - Machi uses concat of check sum instead of reading original data
+https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type
+Immutability Changes Everything
+* It's An Evolution!
+** Speakers
+*** Johnny Winn
+**** Twitter: @johnny_rugger
+** Links
+http://www.erlang-factory.com/sfbay2016/johnny-winn
+** Notes
+*** 
+** Misc
+Ubigraph
+* 
+* Personal
+** Highest Random Weight or Constent Hash and link to appropriate process. Switch to next if it does down
+** Put session log someplace and replay during recovery
+** Bit Torrent Cluster Pattern
+** gen_fsm for circuit breaker pattern. Change state based on errors
+** J language - Roman version of APL
