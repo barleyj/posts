@@ -1,0 +1,15 @@
+I wish you had more time
+
+Time is the great equalizer. It doesn't matter how much education you have or how much money you make, we all have the same amount of time in a day. Some people may get more days than others, but they still only have 24 hours per day. If people, especially our family and friends, are so important, then shouldn't we be spending more time with them? As I wrote that last sentence, I realized I wrote spending time. I wonder how different the world might look if instead of using money as a measuring stick we used time. About a year ago I had the idea to remake my budget as time. I tried to find a simple solution and wasn't able to until now.
+
+* The price of coffee
+I drink a lot of coffee. A lot! I make a comfortable salary so I've never really stopped to consider what coffee costs me. There was a time in my life where that wasn't true, but hedonistic adaptation has made it so I don't really think about it. That was true until I normalized the expense to time. 
+
+* We need a time budget
+When I purchase a car I look at a lot of factors. I look at the initial price, fuel cost per mile, average maintenance cost, average repair cost, insurance cost. These are all costs beyond the initial sticker price. I plug these numbers into a formula and compare it to my current car. If it won't save me money, I need to seriously consider why I'm purchasing the car. Time budgets for software have the same components. We have the initial sticker price, time to answer questions, time to research, time to maintain, time to support, time to fix and time to deploy. We should budget these and treat them like any other expense we have. We have liabilities in the accounting world and we should have them in our software projects. When you take on tech debt to have to repay that. Like the world of finance you can't ignore it and hope it goes away. You either pay it back or you go bankrupt. I've seen many projects go bankrupt because too many loans were taken out and not repaid.
+
+* Why time matters
+Many misguided people in software think you can throw money at a problem to solve it. Time should account for more in that budget than money. Here's why. You start a project with four people that will take approximately six months to complete. That's roughly 3840 hours that you have to spend. How much research time do you want to budget? Support? When we bring a new person to the team, what will it cost to bring them up to speed and answer questions?
+
+* Conclusion
+Forty three hours and nineteen minutes. That's what coffee costs me. I have to work more than 1 week per year to enjoy my coffee. Putting it in this context makes me wonder, would I give up coffee for an extra week of vacation a year? Would I give up coffee if I could retire a year earlier? How much would you give to get an extra week or month of work in on a project?
